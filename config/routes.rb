@@ -1,3 +1,6 @@
 Rails.application.routes.draw do
-  get '/hello', to: 'application#hello_world'
+  resources :cocktail_ingredients
+  resources :ingredients
+  resources :cocktails
+  
 end
