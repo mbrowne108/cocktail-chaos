@@ -1,11 +1,21 @@
-import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import CocktailContainer from './Components/CocktailContainer';
 
 export default function App() {
+  const [cocktails, setCocktails] = useState([])
+
+  useEffect(() => {
+    fetch('http://localhost:3000/cocktails')
+      .then(r => r.json())
+      .then(data => setCocktails(data))
+  }, [])
+
+  console.log(cocktails)
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <CocktailContainer />
     </View>
   );
 }
