@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 
 import NavBar from './NavBar.js'
 import Cocktails from './Cocktails/Cocktails.js'
+import Ingredients from './Ingredients/Ingredients.js'
 
 function App() {
   const [cocktails, setCocktails] = useState([])
@@ -28,15 +29,38 @@ function App() {
     const updatedCocktails = cocktails.filter((cocktail) => cocktail.id !== deletedCocktail.id)
     setCocktails(updatedCocktails)
   }
+
+  function onDeleteIngredient(deletedIngredient) {
+    const updatedIngredients = ingredients.filter((ingredient) => ingredient.id !== deletedIngredient.id)
+    setIngredients(updatedIngredients)
+  }
   
   return (
     <div className="App">
       <NavBar />
       <Routes>
         <Route
-          exact path="/"
-          element={cocktails.length ? <Cocktails cocktails={cocktails} ingredients={ingredients} onDeleteCocktail={onDeleteCocktail} /> : null}  
+          exact path="/cabinet"
+          element={
+            cocktails.length ? 
+              <Ingredients 
+                ingredients={ingredients} 
+                onDeleteIngredient={onDeleteIngredient} 
+              /> : 
+            null}  
         />
+        <Route
+          exact path="/"
+          element={
+            cocktails.length ? 
+              <Cocktails 
+                cocktails={cocktails} 
+                ingredients={ingredients}
+                onDeleteCocktail={onDeleteCocktail} 
+              /> : 
+            null}  
+        />
+        
       </Routes>
     </div>
   );

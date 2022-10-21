@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import CocktailCard from './CocktailCard.js'
 // import NewRecipeForm from './NewRecipeForm.js'
 
-function Cocktails({ cocktails, ingredients, onDeleteCocktail }) {
+function Cocktails({ cocktails, ingredients, onColorChange, onDeleteCocktail }) {
     const [searchValue, setSearchValue] = useState('')
     const [filterValue, setFilterValue] = useState('')
 
@@ -22,7 +22,7 @@ function Cocktails({ cocktails, ingredients, onDeleteCocktail }) {
                 <div className='row'>
                     <input type="search" className="form-control rounded col-6" placeholder="Search..." value={searchValue} onChange={handleSearch}/>
                     <div className='dropdown col-6'>
-                        <button type="button" className="dropdown-toggle col-12" data-bs-toggle="dropdown">
+                        <button type="button" className="btn btn-outline-primary dropdown-toggle col-12" data-bs-toggle="dropdown">
                             Dropdown button
                         </button>
                         <ul className='dropdown-menu col-12'>
@@ -40,6 +40,7 @@ function Cocktails({ cocktails, ingredients, onDeleteCocktail }) {
                     </div>
                     {/* <input type="search" className="form-control rounded col-6" placeholder="Search..." value={filterValue} onChange={handleFilter}/> */}
                 </div>
+                <br/>
                 {searchedCocktails.map((cocktail) => {
                     return <CocktailCard key={cocktail.id} cocktail={cocktail} onDeleteCocktail={onDeleteCocktail} />
                 })}

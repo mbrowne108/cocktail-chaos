@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from "react-router-dom";
 
-function NavBar({ handleLogoutClick }) {
+function NavBar() {
   return (
     <nav className='btn-group d-flex'>
       <NavLink className="btn btn-primary" to="/" >Cocktail Recipes</NavLink>
