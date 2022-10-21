@@ -3,7 +3,7 @@ import IngredientCard from './IngredientCard.js'
 // import NewRecipeForm from './NewRecipeForm.js'
 
 
-function Ingredients({ ingredients, onDeleteIngredient }) {
+function Ingredients({ ingredients, ingredientColor, onUpdateIngredient, onDeleteIngredient }) {
     const [searchValue, setSearchValue] = useState('')
 
     function handleSearch(e) {
@@ -22,7 +22,9 @@ function Ingredients({ ingredients, onDeleteIngredient }) {
             {searchedIngredients.map((ingredient) => 
                 <IngredientCard 
                     key={ingredient.id} 
-                    ingredient={ingredient} 
+                    ingredient={ingredient}
+                    ingredientColor={ingredientColor} 
+                    onUpdateIngredient={onUpdateIngredient}
                     onDeleteIngredient={onDeleteIngredient} 
                 />)}
             </div>

@@ -30,9 +30,28 @@ function App() {
     setCocktails(updatedCocktails)
   }
 
+  function onUpdateIngredient(updatedIngredient) {
+    const updatedIngredients = ingredients.map((ingredient) => {
+      if (ingredient.id === updatedIngredient.id) {
+        return updatedIngredient
+      } else {
+        return ingredient
+      }
+    })
+    setIngredients(updatedIngredients)
+  }
+
   function onDeleteIngredient(deletedIngredient) {
     const updatedIngredients = ingredients.filter((ingredient) => ingredient.id !== deletedIngredient.id)
     setIngredients(updatedIngredients)
+  }
+
+  function ingredientColor(ingredient) {
+    if (ingredient.instock) {
+      return 'success'
+    } else {
+      return 'danger'
+    }
   }
   
   return (
@@ -45,6 +64,8 @@ function App() {
             cocktails.length ? 
               <Ingredients 
                 ingredients={ingredients} 
+                ingredientColor={ingredientColor}
+                onUpdateIngredient={onUpdateIngredient}
                 onDeleteIngredient={onDeleteIngredient} 
               /> : 
             null}  
@@ -56,6 +77,7 @@ function App() {
               <Cocktails 
                 cocktails={cocktails} 
                 ingredients={ingredients}
+                ingredientColor={ingredientColor}
                 onDeleteCocktail={onDeleteCocktail} 
               /> : 
             null}  
