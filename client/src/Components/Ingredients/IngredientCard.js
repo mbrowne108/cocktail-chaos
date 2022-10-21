@@ -2,7 +2,7 @@ import React from 'react';
 
 function IngredientCard({ ingredient, ingredientColor, onUpdateIngredient, onDeleteIngredient }) {
 
-    function updateIngredient() {
+    function handleUpdate() {
         fetch(`/ingredients/${ingredient.id}`, {
             method: "PATCH",
             headers: {
@@ -29,7 +29,7 @@ function IngredientCard({ ingredient, ingredientColor, onUpdateIngredient, onDel
 
     return (
         <h5 className={`row list-group-item-${ingredientColor(ingredient)}`}>
-            <button className='btn btn-primary btn-sm col-1 fa fa-shopping-cart' onClick={updateIngredient}></button>
+            <button className='btn btn-primary btn-sm col-1 fa fa-shopping-cart' onClick={handleUpdate}></button>
             <p className="col-10">{ingredient.name}</p>
             <button className='btn btn-primary btn-sm col-1 fa fa-trash' onClick={handleDelete}></button>
         </h5>

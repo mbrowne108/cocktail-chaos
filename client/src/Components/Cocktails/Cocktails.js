@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import CocktailCard from './CocktailCard.js'
 // import NewRecipeForm from './NewRecipeForm.js'
 
-function Cocktails({ cocktails, ingredients, onColorChange, onDeleteCocktail }) {
+function Cocktails({ cocktails, ingredients, ingredientColor, onDeleteCocktail }) {
     const [searchValue, setSearchValue] = useState('')
     const [filterValue, setFilterValue] = useState('')
 
@@ -42,7 +42,12 @@ function Cocktails({ cocktails, ingredients, onColorChange, onDeleteCocktail }) 
                 </div>
                 <br/>
                 {searchedCocktails.map((cocktail) => {
-                    return <CocktailCard key={cocktail.id} cocktail={cocktail} onDeleteCocktail={onDeleteCocktail} />
+                    return <CocktailCard 
+                                key={cocktail.id} 
+                                cocktail={cocktail} 
+                                ingredientColor={ingredientColor} 
+                                onDeleteCocktail={onDeleteCocktail} 
+                            />
                 })}
             </div>
             {/* <br/>

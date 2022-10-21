@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 
-function CocktailCard({ cocktail, onDeleteCocktail }) {
+function CocktailCard({ cocktail, ingredientColor, onDeleteCocktail }) {
     // const newInstructions = cocktail.instructions.replaceAll('\\n','\n')
     // const splitInstructions = newInstructions.split(/\r?\n/)
     // const measurements = recipe.measurements.replace('[','').replace(']','').replaceAll('"', '').split(', ')
     // const ingredients = recipe.ingredients.map((ing,i) => Object.assign(ing, {measurement: measurements[i]}))
     const [errors, setErrors] = useState([]);
 
-    function handleDelete(e) {
+    function handleDelete() {
         const result = window.confirm(`Are you sure you want to delete ${cocktail.name}?`)
         if (result) {
             fetch(`/cocktails/${cocktail.id}`, {
@@ -40,7 +40,7 @@ function CocktailCard({ cocktail, onDeleteCocktail }) {
                         {cocktail.cocktail_ingredients.map((ingredient) => {
                             return (
                                 <div className='row' key={ingredient.id}>
-                                    <h6 className={`list-group-item-primary p-2 col-9`}>{ingredient.measure} — {ingredient.ingredient.name}</h6>
+                                    <h6 className={`list-group-item-${ingredientColor(ingredient.ingredient)} p-2 col-9`}>{ingredient.measure} — {ingredient.ingredient.name}</h6>
                                 </div>
                             )
                         })}
