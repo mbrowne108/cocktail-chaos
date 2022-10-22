@@ -30,6 +30,18 @@ function App() {
     setCocktails(updatedCocktails)
   }
 
+  function onNewIngredient(newIngredient) {
+    const newIngredientArray = [...ingredients, newIngredient]
+    setIngredients(newIngredientArray)
+    alert(`${newIngredient.name} has been added to your pantry`)
+  }
+
+  function onNewCocktail(newCocktail) {
+    const newCocktailArray = [...cocktails, newCocktail]
+    setCocktails(newCocktailArray)
+    alert(`${newCocktail.name} has been added to your pantry`)
+  }
+
   function onUpdateIngredient(updatedIngredient) {
     const updatedIngredients = ingredients.map((ingredient) => {
       if (ingredient.id === updatedIngredient.id) {
@@ -56,28 +68,35 @@ function App() {
   
   return (
     <div className="App">
+      <header className="App-header">
+        <div className="container rounded p-3 my-2 border bg-light text-center">
+          <h1 className='display-1'>Cocktail Chaos</h1>
+        </div>
+      </header>
       <NavBar />
       <Routes>
         <Route
-          exact path="/cabinet"
+          exact path="/ingredients"
           element={
             cocktails.length ? 
               <Ingredients 
                 ingredients={ingredients} 
                 ingredientColor={ingredientColor}
+                onNewIngredient={onNewIngredient}
                 onUpdateIngredient={onUpdateIngredient}
                 onDeleteIngredient={onDeleteIngredient} 
               /> : 
             null}  
         />
         <Route
-          exact path="/"
+          exact path="/cocktails"
           element={
             cocktails.length ? 
               <Cocktails 
                 cocktails={cocktails} 
                 ingredients={ingredients}
                 ingredientColor={ingredientColor}
+                onNewCocktail={onNewCocktail}
                 onDeleteCocktail={onDeleteCocktail} 
               /> : 
             null}  

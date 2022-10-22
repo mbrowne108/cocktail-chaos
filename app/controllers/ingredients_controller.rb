@@ -8,6 +8,17 @@ class IngredientsController < ApplicationController
         render json: ingredient, status: 200
     end
 
+    def destroy
+        ingredient = find_ingredient
+        ingredient.destroy
+        render json: {}
+    end
+
+    def create
+        ingredient = Ingredient.create!(ingredient_params)
+        render json: ingredient, status: :created
+    end
+
     def update
         ingredient = find_ingredient
         if ingredient

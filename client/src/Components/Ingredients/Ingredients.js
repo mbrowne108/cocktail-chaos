@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import IngredientCard from './IngredientCard.js'
-// import NewRecipeForm from './NewRecipeForm.js'
+import NewIngredientForm from './NewIngredientForm.js'
 
 
-function Ingredients({ ingredients, ingredientColor, onUpdateIngredient, onDeleteIngredient }) {
+function Ingredients({ ingredients, ingredientColor, onNewIngredient, onUpdateIngredient, onDeleteIngredient }) {
     const [searchValue, setSearchValue] = useState('')
 
     function handleSearch(e) {
@@ -28,14 +28,12 @@ function Ingredients({ ingredients, ingredientColor, onUpdateIngredient, onDelet
                     onDeleteIngredient={onDeleteIngredient} 
                 />)}
             </div>
-            <br/>
-            {/* <div className="container text-center"> 
-            <button className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ing-form-modal">Add New Item</button>
+            <div className="container text-center"> 
+                <button className="btn btn-lg btn-outline-primary col-12 fa fa-plus" data-bs-toggle="modal" data-bs-target="#ing-form-modal"></button>
             </div>
-            <br/>
             <div className='modal fade' id="ing-form-modal">
-            <NewIngredientForm ingredients={ingredients} onNewIngredient={onNewIngredient} />
-            </div>   */}
+                <NewIngredientForm ingredients={ingredients} onNewIngredient={onNewIngredient} />
+            </div>  
         </div>
     );
 }
